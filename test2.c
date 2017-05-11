@@ -14,6 +14,9 @@
 /* ASCII code for the escape key. */
 #define ESCAPE 27
 
+GLfloat     rtri;                       // Angle For The Triangle ( NEW )
+GLfloat     rquad;                      // Angle For The Quad     ( NEW )
+
 /* The number of our GLUT window */
 int window;
 
@@ -58,6 +61,7 @@ void DrawGLScene()
   glTranslatef(-1.5f,0.0f,-6.0f);		// Move Left 1.5 Units And Into The Screen 6.0
 
   // draw a triangle
+  glRotatef(rtri,0.0f,1.0f,0.0f);
   glBegin(GL_TRIANGLES);
   glColor3f(1.0f,0.0f,0.0f);				// start drawing a polygon
   glVertex3f( 0.0f, 1.0f, 0.0f);		// Top
@@ -67,8 +71,9 @@ void DrawGLScene()
   glVertex3f(-1.0f,-1.0f, 0.0f);		// Bottom Left
   glEnd();					// we're done with the polygon
 
-  glTranslatef(3.0f,0.0f,0.0f);		        // Move Right 3 Units
-
+  glLoadIdentity();
+  glTranslatef(1.5f,0.0f,-6.0f);		        // Move Right 3 Units
+  glRotatef(rquad,1.0f,0.0f,0.0f);
   // draw a square (quadrilateral)
   glBegin(GL_QUADS);				// start drawing a polygon (4 sided)
   glVertex3f(-1.0f, 1.0f, 0.0f);		// Top Left
@@ -76,7 +81,8 @@ void DrawGLScene()
   glVertex3f( 1.0f,-1.0f, 0.0f);		// Bottom Right
   glVertex3f(-1.0f,-1.0f, 0.0f);		// Bottom Left
   glEnd();					// done with the polygon
-
+  rtri+=0.2f;                     // Increase The Rotation Variable For The Triangle ( NEW )
+    rquad-=0.15f;                       // Decrease The Rotation Variable For The Quad     ( NEW )
   // swap buffers to display, since we're double buffered.
   glutSwapBuffers();
 }
