@@ -1,24 +1,17 @@
 //
-// This code was created by Jeff Molofee '99 (ported to Linux/GLUT by Richard Campbell '99)
-//
-// If you've found this code useful, please let me know.
-//
-// Visit me at www.demonews.com/hosted/nehe
-// (email Richard Campbell at ulmont@bellsouth.net)
-//
 #include <GL/glut.h>    // Header File For The GLUT Library
 #include <GL/gl.h>	// Header File For The OpenGL32 Library
 #include <GL/glu.h>	// Header File For The GLu32 Library
-#include <unistd.h>     // Header File For sleeping.
+#include <unistd.h>     // Header file for sleeping.
 
-/* ASCII code for the escape key. */
+/* ascii code for the escape key */
 #define ESCAPE 27
-#define LEFTA 37
-
-GLfloat     rtri;                       // Angle For The Triangle ( NEW )                      // Angle For The Quad     ( NEW )
 
 /* The number of our GLUT window */
 int window;
+GLfloat     rot;                       // Angle For The Triangle ( NEW )
+GLfloat     rquad;
+
 
 /* A general OpenGL initialization function.  Sets all of the initial parameters. */
 void InitGL(int Width, int Height)	        // We call this right after our OpenGL window is created.
@@ -57,24 +50,27 @@ void DrawGLScene()
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);		// Clear The Screen And The Depth Buffer
   glLoadIdentity();				// Reset The View
+  glTranslatef(0.0f,0.0f,-12.0f);
+  glRotatef(rot,0.0f,1.0f,0.0f);
+  GLUquadricObj *quadratic = gluNewQuadric();
+  // since this is double buffered, swap the buffers to display what just got drawn.
 
-  glTranslatef(-1.5f,0.0f,-6.0f);		// Move Left 1.5 Units And Into The Screen 6.0
+  gluCylinder(quadratic,0.225f,0.225f,0.45f,32,32);
+  glTranslatef(0.0f,-0.225f,-12.0f);
+  glBegin(GL_POLYGON);
+  glVertex3f( 0.225f, 0.0f, 0.0f);
+  glVertex3f( 0.225f, -2.0f, 0.0f);
+  glVertex3f( -0.225f, -2.0f, 0.0f);
+  glVertex3f( -0.225f, 0.0f, 0.0f);
+  glVertex3f( 0.225f, 0.0f, 0.0f);
+  glEnd();
 
-  // draw a triangle
-  glRotatef(rtri,0.0f,1.0f,0.0f);
-  glBegin(GL_TRIANGLES);
-  glColor3f(1.0f,0.0f,0.0f);				// start drawing a polygon
-  glVertex3f( 0.0f, 1.0f, 0.0f);		// Top
-  glColor3f(0.0f,1.0f,0.0f);
-  glVertex3f( 1.0f,-1.0f, 0.0f);		// Bottom Right
-  glColor3f(0.0f,0.0f,1.0f);
-  glVertex3f(-1.0f,-1.0f, 0.0f);		// Bottom Left
-  glEnd();					// we're done with the polygon
 
-	        // Move Right 3 Units
-  // draw a square (quadrilateral)				// done with the polygon
-                    // Increase The Rotation Variable For The Triangle ( NEW )                      // Decrease The Rotation Variable For The Quad     ( NEW )
-  // swap buffers to display, since we're double buffered.
+
+
+
+
+
   glutSwapBuffers();
 }
 
@@ -82,7 +78,7 @@ void DrawGLScene()
 void keyPressed(unsigned char key, int x, int y)
 {
     /* avoid thrashing this procedure */
-    //usleep(100);
+    usleep(100);
 
     /* If escape is pressed, kill everything. */
     if (key == ESCAPE)
@@ -96,11 +92,14 @@ void keyPressed(unsigned char key, int x, int y)
 }
 void specialKeys( int key, int x, int y ) {
   if (key == GLUT_KEY_LEFT)
-    rtri += 5.0f;
+    rot += 5.0f;
+  else if (key == GLUT_KEY_RIGHT)
+      rot -= 5.0f;
 
   glutPostRedisplay();
 
 }
+
 
 int main(int argc, char **argv)
 {
@@ -127,7 +126,7 @@ int main(int argc, char **argv)
   /* Register the function to do all our OpenGL drawing. */
   glutDisplayFunc(&DrawGLScene);
 
-  /* Go fullscreen.  This is the soonest we could possibly go fullscreen. */
+  /* Go fullscreen.  This is as soon as possible. */
   glutFullScreen();
 
   /* Even if there are no events, redraw our gl scene. */
