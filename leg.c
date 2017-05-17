@@ -1,4 +1,3 @@
-//
 #include <GL/glut.h>    // Header File For The GLUT Library
 #include <GL/gl.h>	// Header File For The OpenGL32 Library
 #include <GL/glu.h>	// Header File For The GLu32 Library
@@ -10,13 +9,12 @@
 /* The number of our GLUT window */
 int window;
 GLfloat     rot;                       // Angle For The Triangle ( NEW )
-GLfloat     rquad;
-
+GLfloat     zoom = -12.0f;
 
 /* A general OpenGL initialization function.  Sets all of the initial parameters. */
 void InitGL(int Width, int Height)	        // We call this right after our OpenGL window is created.
 {
-  glClearColor(0.0f, 0.0f, 0.0f, 0.0f);		// This Will Clear The Background Color To Black
+  glClearColor(1.0f, 1.0f, 1.0f, 1.0f);		// This Will Clear The Background Color To Black
   glClearDepth(1.0);				// Enables Clearing Of The Depth Buffer
   glDepthFunc(GL_LESS);				// The Type Of Depth Test To Do
   glEnable(GL_DEPTH_TEST);			// Enables Depth Testing
@@ -50,27 +48,85 @@ void DrawGLScene()
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);		// Clear The Screen And The Depth Buffer
   glLoadIdentity();				// Reset The View
-  glTranslatef(0.0f,0.0f,-12.0f);
+  glTranslatef(0.0f,0.0f,zoom);
   glRotatef(rot,0.0f,1.0f,0.0f);
-  GLUquadricObj *quadratic = gluNewQuadric();
-  // since this is double buffered, swap the buffers to display what just got drawn.
-
-  gluCylinder(quadratic,0.225f,0.225f,0.45f,32,32);
-  glTranslatef(0.0f,-0.225f,-12.0f);
   glBegin(GL_POLYGON);
-  glVertex3f( 0.225f, 0.0f, 0.0f);
-  glVertex3f( 0.225f, -2.0f, 0.0f);
-  glVertex3f( -0.225f, -2.0f, 0.0f);
-  glVertex3f( -0.225f, 0.0f, 0.0f);
-  glVertex3f( 0.225f, 0.0f, 0.0f);
+  glColor3f(0.0,0.0,0.0);  //Front
+  glVertex3f(1.0f,2.0f,1.0f);  //Front
+  glVertex3f(-1.0f,2.0f,1.0f); //Front
+  glVertex3f(-1.0f,-2.0f,1.0f); //Front
+  glVertex3f(1.0f,-2.0f,1.0f);  //Front
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.0,0.0,0.0);  //Top Knee
+  glVertex3f(1.0,-2.0f,1.0f);  //Top Knee
+  glVertex3f(-1.0,-2.0f,1.0f);  //Top Knee
+  glVertex3f(-1.0,-2.0f,3.0f);  //Top Knee
+  glVertex3f(1.0,-2.0f,3.0f);  //Top Knee
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.0,0.0,0.0);  //Front
+  glVertex3f(1.0f,-2.0f,3.0f); //Front knee
+  glVertex3f(-1.0f,-2.0f,3.0f); //Front knee
+  glVertex3f(-1.0f,-3.0f,3.0f); //Front knee
+  glVertex3f(1.0f,-3.0f,3.0f); //Front knee
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.0,0.0,0.0);  //Bottom Knee
+  glVertex3f(1.0,-3.0f,0.0f);  //Bottom Knee
+  glVertex3f(-1.0,-3.0f,0.0f);  //Bottom Knee
+  glVertex3f(-1.0,-3.0f,3.0f);  //Bottom Knee
+  glVertex3f(1.0,-3.0f,3.0f);  //Bottom Knee
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.0,0.0,0.0);  //Back
+  glVertex3f(1.0f,2.0f,0.0f);  //Back
+  glVertex3f(-1.0f,2.0f,0.0f); //Back
+  glVertex3f(-1.0f,-3.0f,0.0f); //Back
+  glVertex3f(1.0f,-3.0f,0.0f);  //Back
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.0,0.0,0.0);  //Top
+  glVertex3f(1.0,2.0f,1.0f);  //Top
+  glVertex3f(-1.0,2.0f,1.0f);  //Top
+  glVertex3f(-1.0,2.0f,0.0f);  //Top
+  glVertex3f(1.0,2.0f,0.0f);  //Top
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.0,0.0,0.0);  //RightLong
+  glVertex3f(1.0f,2.0f,1.0f);  //RightLong
+  glVertex3f(1.0f,2.0f,0.0f);  //RightLong
+  glVertex3f(1.0f,-3.0f,0.0f);  //RightLong
+  glVertex3f(1.0f,-3.0f,1.0f);  //RightLong
+  glVertex3f(1.0f,2.0f,1.0f);   //RightLong
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.0,0.0,0.0);  //RightShort
+  glVertex3f(1.0f,-3.0f,1.0f);  //RightShort
+  glVertex3f(1.0f,-3.0f,3.0f);  //RightShort
+  glVertex3f(1.0f,-2.0f,3.0f);  //RightShort
+  glVertex3f(1.0f,-2.0f,1.0f);  //RightShort
+  //glVertex3f(1.0f,-3.0f,1.0f);   //RightShort
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.0,0.0,0.0);  //LeftLong
+  glVertex3f(-1.0f,2.0f,1.0f);  //LeftLong
+  glVertex3f(-1.0f,2.0f,0.0f);  //LeftLong
+  glVertex3f(-1.0f,-3.0f,0.0f);  //LeftLong
+  glVertex3f(-1.0f,-3.0f,1.0f);  //LeftLong
+  glVertex3f(-1.0f,2.0f,1.0f);   //LeftLong
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.0,0.0,0.0);  //LeftShort
+  glVertex3f(-1.0f,-3.0f,1.0f);  //LeftShort
+  glVertex3f(-1.0f,-3.0f,3.0f);  //LeftShort
+  glVertex3f(-1.0f,-2.0f,3.0f);  //LeftShort
+  glVertex3f(-1.0f,-2.0f,1.0f);  //LeftShort
+  //glVertex3f(1.0f,-3.0f,1.0f);   //LeftShort
   glEnd();
 
 
-
-
-
-
-
+  // since this is double buffered, swap the buffers to display what just got drawn.
   glutSwapBuffers();
 }
 
@@ -94,12 +150,15 @@ void specialKeys( int key, int x, int y ) {
   if (key == GLUT_KEY_LEFT)
     rot += 5.0f;
   else if (key == GLUT_KEY_RIGHT)
-      rot -= 5.0f;
+    rot -= 5.0f;
+    else if (key == GLUT_KEY_UP)
+      zoom += 0.5f;
+      else if (key == GLUT_KEY_DOWN)
+        zoom -= 0.5f;
 
   glutPostRedisplay();
 
 }
-
 
 int main(int argc, char **argv)
 {

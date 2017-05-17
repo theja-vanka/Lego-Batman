@@ -92,6 +92,40 @@ void DrawGLScene()
   glVertex3f(-1.0,2.0f,0.0f);  //Top
   glVertex3f(1.0,2.0f,0.0f);  //Top
   glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.0,0.0,0.0);  //RightLong
+  glVertex3f(1.0f,2.0f,1.0f);  //RightLong
+  glVertex3f(1.0f,2.0f,0.0f);  //RightLong
+  glVertex3f(1.0f,-3.0f,0.0f);  //RightLong
+  glVertex3f(1.0f,-3.0f,1.0f);  //RightLong
+  glVertex3f(1.0f,2.0f,1.0f);   //RightLong
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.0,0.0,0.0);  //RightShort
+  glVertex3f(1.0f,-3.0f,1.0f);  //RightShort
+  glVertex3f(1.0f,-3.0f,3.0f);  //RightShort
+  glVertex3f(1.0f,-2.0f,3.0f);  //RightShort
+  glVertex3f(1.0f,-2.0f,1.0f);  //RightShort
+  //glVertex3f(1.0f,-3.0f,1.0f);   //RightShort
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.0,0.0,0.0);  //LeftLong
+  glVertex3f(-1.0f,2.0f,1.0f);  //LeftLong
+  glVertex3f(-1.0f,2.0f,0.0f);  //LeftLong
+  glVertex3f(-1.0f,-3.0f,0.0f);  //LeftLong
+  glVertex3f(-1.0f,-3.0f,1.0f);  //LeftLong
+  glVertex3f(-1.0f,2.0f,1.0f);   //LeftLong
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.0,0.0,0.0);  //LeftShort
+  glVertex3f(-1.0f,-3.0f,1.0f);  //LeftShort
+  glVertex3f(-1.0f,-3.0f,3.0f);  //LeftShort
+  glVertex3f(-1.0f,-2.0f,3.0f);  //LeftShort
+  glVertex3f(-1.0f,-2.0f,1.0f);  //LeftShort
+  //glVertex3f(1.0f,-3.0f,1.0f);   //LeftShort
+  glEnd();
+
+
   // since this is double buffered, swap the buffers to display what just got drawn.
   glutSwapBuffers();
 }
