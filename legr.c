@@ -9,6 +9,7 @@
 /* The number of our GLUT window */
 int window;
 GLfloat     rot;                       // Angle For The Triangle ( NEW )
+GLfloat     zoom = -12.0f;
 
 /* A general OpenGL initialization function.  Sets all of the initial parameters. */
 void InitGL(int Width, int Height)	        // We call this right after our OpenGL window is created.
@@ -47,7 +48,7 @@ void DrawGLScene()
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);		// Clear The Screen And The Depth Buffer
   glLoadIdentity();				// Reset The View
-  glTranslatef(0.0f,0.0f,-12.0f);
+  glTranslatef(0.0f,0.0f,zoom);
   glRotatef(rot,0.0f,1.0f,0.0f);
   glBegin(GL_POLYGON);
   glColor3f(0.0,0.0,0.0);  //Front
@@ -116,6 +117,10 @@ void specialKeys( int key, int x, int y ) {
     rot += 5.0f;
   else if (key == GLUT_KEY_RIGHT)
     rot -= 5.0f;
+    else if (key == GLUT_KEY_UP)
+      zoom += 0.5f;
+      else if (key == GLUT_KEY_DOWN)
+        zoom -= 0.5f;
 
   glutPostRedisplay();
 
