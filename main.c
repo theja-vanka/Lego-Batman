@@ -126,6 +126,7 @@ void DrawGLScene()
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);		// Clear The Screen And The Depth Buffer
   glLoadIdentity();				// Reset The View
+  
   glRotatef(rot,0.0f,1.0f,0.0f);
   glTranslatef(2.0f,0.0f,zoom);
   Leg();
