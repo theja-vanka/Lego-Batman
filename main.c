@@ -9,7 +9,7 @@
 /* The number of our GLUT window */
 int window;
 GLfloat     rot;                       // Angle For The Triangle ( NEW )
-GLfloat     zoom = -12.0f;
+GLfloat     zoom = -20.0f;
 
 /* A general OpenGL initialization function.  Sets all of the initial parameters. */
 void InitGL(int Width, int Height)	        // We call this right after our OpenGL window is created.
@@ -43,81 +43,142 @@ void ReSizeGLScene(int Width, int Height)
   glMatrixMode(GL_MODELVIEW);
 }
 
-void Leg()
+void Leg(GLfloat pos)
 {
   glBegin(GL_POLYGON);
   glColor3f(0.0,0.0,0.0);  //Front
-  glVertex3f(1.0f,2.0f,1.0f);  //Front
-  glVertex3f(-1.0f,2.0f,1.0f); //Front
-  glVertex3f(-1.0f,-2.0f,1.0f); //Front
-  glVertex3f(1.0f,-2.0f,1.0f);  //Front
+  glVertex3f(1.0f+pos,2.0f,1.0f);  //Front
+  glVertex3f(-1.0f+pos,2.0f,1.0f); //Front
+  glVertex3f(-1.0f+pos,-2.0f,1.0f); //Front
+  glVertex3f(1.0f+pos,-2.0f,1.0f);  //Front
   glEnd();
   glBegin(GL_POLYGON);
   glColor3f(0.0,0.0,0.0);  //Top Knee
-  glVertex3f(1.0,-2.0f,1.0f);  //Top Knee
-  glVertex3f(-1.0,-2.0f,1.0f);  //Top Knee
-  glVertex3f(-1.0,-2.0f,3.0f);  //Top Knee
-  glVertex3f(1.0,-2.0f,3.0f);  //Top Knee
+  glVertex3f(1.0+pos,-2.0f,1.0f);  //Top Knee
+  glVertex3f(-1.0+pos,-2.0f,1.0f);  //Top Knee
+  glVertex3f(-1.0+pos,-2.0f,3.0f);  //Top Knee
+  glVertex3f(1.0+pos,-2.0f,3.0f);  //Top Knee
   glEnd();
   glBegin(GL_POLYGON);
   glColor3f(0.0,0.0,0.0);  //Front
-  glVertex3f(1.0f,-2.0f,3.0f); //Front knee
-  glVertex3f(-1.0f,-2.0f,3.0f); //Front knee
-  glVertex3f(-1.0f,-3.0f,3.0f); //Front knee
-  glVertex3f(1.0f,-3.0f,3.0f); //Front knee
+  glVertex3f(1.0f+pos,-2.0f,3.0f); //Front knee
+  glVertex3f(-1.0f+pos,-2.0f,3.0f); //Front knee
+  glVertex3f(-1.0f+pos,-3.0f,3.0f); //Front knee
+  glVertex3f(1.0f+pos,-3.0f,3.0f); //Front knee
   glEnd();
   glBegin(GL_POLYGON);
   glColor3f(0.0,0.0,0.0);  //Bottom Knee
-  glVertex3f(1.0,-3.0f,0.0f);  //Bottom Knee
-  glVertex3f(-1.0,-3.0f,0.0f);  //Bottom Knee
-  glVertex3f(-1.0,-3.0f,3.0f);  //Bottom Knee
-  glVertex3f(1.0,-3.0f,3.0f);  //Bottom Knee
+  glVertex3f(1.0+pos,-3.0f,0.0f);  //Bottom Knee
+  glVertex3f(-1.0+pos,-3.0f,0.0f);  //Bottom Knee
+  glVertex3f(-1.0+pos,-3.0f,3.0f);  //Bottom Knee
+  glVertex3f(1.0+pos,-3.0f,3.0f);  //Bottom Knee
   glEnd();
   glBegin(GL_POLYGON);
   glColor3f(0.0,0.0,0.0);  //Back
-  glVertex3f(1.0f,2.0f,0.0f);  //Back
-  glVertex3f(-1.0f,2.0f,0.0f); //Back
-  glVertex3f(-1.0f,-3.0f,0.0f); //Back
-  glVertex3f(1.0f,-3.0f,0.0f);  //Back
+  glVertex3f(1.0f+pos,2.0f,0.0f);  //Back
+  glVertex3f(-1.0f+pos,2.0f,0.0f); //Back
+  glVertex3f(-1.0f+pos,-3.0f,0.0f); //Back
+  glVertex3f(1.0f+pos,-3.0f,0.0f);  //Back
   glEnd();
   glBegin(GL_POLYGON);
   glColor3f(0.0,0.0,0.0);  //Top
-  glVertex3f(1.0,2.0f,1.0f);  //Top
-  glVertex3f(-1.0,2.0f,1.0f);  //Top
-  glVertex3f(-1.0,2.0f,0.0f);  //Top
-  glVertex3f(1.0,2.0f,0.0f);  //Top
+  glVertex3f(1.0+pos,2.0f,1.0f);  //Top
+  glVertex3f(-1.0+pos,2.0f,1.0f);  //Top
+  glVertex3f(-1.0+pos,2.0f,0.0f);  //Top
+  glVertex3f(1.0+pos,2.0f,0.0f);  //Top
   glEnd();
   glBegin(GL_POLYGON);
   glColor3f(0.0,0.0,0.0);  //RightLong
-  glVertex3f(1.0f,2.0f,1.0f);  //RightLong
-  glVertex3f(1.0f,2.0f,0.0f);  //RightLong
-  glVertex3f(1.0f,-3.0f,0.0f);  //RightLong
-  glVertex3f(1.0f,-3.0f,1.0f);  //RightLong
-  glVertex3f(1.0f,2.0f,1.0f);   //RightLong
+  glVertex3f(1.0f+pos,2.0f,1.0f);  //RightLong
+  glVertex3f(1.0f+pos,2.0f,0.0f);  //RightLong
+  glVertex3f(1.0f+pos,-3.0f,0.0f);  //RightLong
+  glVertex3f(1.0f+pos,-3.0f,1.0f);  //RightLong
+  glVertex3f(1.0f+pos,2.0f,1.0f);   //RightLong
   glEnd();
   glBegin(GL_POLYGON);
   glColor3f(0.0,0.0,0.0);  //RightShort
-  glVertex3f(1.0f,-3.0f,1.0f);  //RightShort
-  glVertex3f(1.0f,-3.0f,3.0f);  //RightShort
-  glVertex3f(1.0f,-2.0f,3.0f);  //RightShort
-  glVertex3f(1.0f,-2.0f,1.0f);  //RightShort
+  glVertex3f(1.0f+pos,-3.0f,1.0f);  //RightShort
+  glVertex3f(1.0f+pos,-3.0f,3.0f);  //RightShort
+  glVertex3f(1.0f+pos,-2.0f,3.0f);  //RightShort
+  glVertex3f(1.0f+pos,-2.0f,1.0f);  //RightShort
   //glVertex3f(1.0f,-3.0f,1.0f);   //RightShort
   glEnd();
   glBegin(GL_POLYGON);
   glColor3f(0.0,0.0,0.0);  //LeftLong
-  glVertex3f(-1.0f,2.0f,1.0f);  //LeftLong
-  glVertex3f(-1.0f,2.0f,0.0f);  //LeftLong
-  glVertex3f(-1.0f,-3.0f,0.0f);  //LeftLong
-  glVertex3f(-1.0f,-3.0f,1.0f);  //LeftLong
-  glVertex3f(-1.0f,2.0f,1.0f);   //LeftLong
+  glVertex3f(-1.0f+pos,2.0f,1.0f);  //LeftLong
+  glVertex3f(-1.0f+pos,2.0f,0.0f);  //LeftLong
+  glVertex3f(-1.0f+pos,-3.0f,0.0f);  //LeftLong
+  glVertex3f(-1.0f+pos,-3.0f,1.0f);  //LeftLong
+  glVertex3f(-1.0f+pos,2.0f,1.0f);   //LeftLong
   glEnd();
   glBegin(GL_POLYGON);
   glColor3f(0.0,0.0,0.0);  //LeftShort
-  glVertex3f(-1.0f,-3.0f,1.0f);  //LeftShort
-  glVertex3f(-1.0f,-3.0f,3.0f);  //LeftShort
-  glVertex3f(-1.0f,-2.0f,3.0f);  //LeftShort
-  glVertex3f(-1.0f,-2.0f,1.0f);  //LeftShort
+  glVertex3f(-1.0f+pos,-3.0f,1.0f);  //LeftShort
+  glVertex3f(-1.0f+pos,-3.0f,3.0f);  //LeftShort
+  glVertex3f(-1.0f+pos,-2.0f,3.0f);  //LeftShort
+  glVertex3f(-1.0f+pos,-2.0f,1.0f);  //LeftShort
   //glVertex3f(1.0f,-3.0f,1.0f);   //LeftShort
+  glEnd();
+}
+
+void torso()
+{
+
+  glBegin(GL_POLYGON);
+  glColor3f(0.0f,0.0f,0.0f);  //Back
+  glVertex3f(2.5f,0.0f,1.0f); //Back
+  glVertex3f(1.5f,4.0f,1.0f); //Back
+  glVertex3f(-1.5f,4.0f,1.0f); //Back
+  glVertex3f(-2.5f,0.0f,1.0f); //Back
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.0f,0.0f,0.0f);  //Front
+  glVertex3f(2.5f,0.0f,0.0f); //Front
+  glVertex3f(1.5f,4.0f,0.0f); //Front
+  glVertex3f(-1.5f,4.0f,0.0f); //Front
+  glVertex3f(-2.5f,0.0f,0.0f); //Front
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.0f,0.0f,0.0f);  //Left
+  glVertex3f(-1.5f,4.0f,1.0f); //Left
+  glVertex3f(-1.5f,4.0f,0.0f); //Left
+  glVertex3f(-2.5f,0.0f,0.0f); //Left
+  glVertex3f(-2.5f,0.0f,1.0f); //Left
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.0f,0.0f,0.0f);  //Right
+  glVertex3f(1.5f,4.0f,1.0f); //Right
+  glVertex3f(1.5f,4.0f,0.0f); //Right
+  glVertex3f(2.5f,0.0f,0.0f); //Right
+  glVertex3f(2.5f,0.0f,1.0f); //Right
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.0f,0.0f,0.0f);  //RodFront
+  glVertex3f(-0.25f,4.5f,0.2f); //RodFront
+  glVertex3f(-0.25f,4.0f,0.2f); //RodFront
+  glVertex3f(0.25f,4.0f,0.2f); //RodFront
+  glVertex3f(0.25f,4.5f,0.2f); //RodFront
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.0f,0.0f,0.0f);  //RodBack
+  glVertex3f(-0.25f,4.5f,0.8f); //RodBack
+  glVertex3f(-0.25f,4.0f,0.8f); //RodBack
+  glVertex3f(0.25f,4.0f,0.8f); //RodBack
+  glVertex3f(0.25f,4.5f,0.8f); //RodBack
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.0f,0.0f,0.0f);  //RodBack
+  glVertex3f(0.25f,4.0f,0.2f); //RodBack
+  glVertex3f(0.25f,4.0f,0.8f); //RodBack
+  glVertex3f(0.25f,4.5f,0.8f); //RodBack
+  glVertex3f(0.25f,4.5f,0.2f); //RodBack
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.0f,0.0f,0.0f);  //RodBack
+  glVertex3f(-0.25f,4.0f,0.2f); //RodBack
+  glVertex3f(-0.25f,4.0f,0.8f); //RodBack
+  glVertex3f(-0.25f,4.5f,0.8f); //RodBack
+  glVertex3f(-0.25f,4.5f,0.2f); //RodBack
   glEnd();
 }
 
@@ -125,15 +186,20 @@ void Leg()
 void DrawGLScene()
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);		// Clear The Screen And The Depth Buffer
+  glLoadIdentity();
+  glTranslatef(0.0,0.0,0.0);
   glLoadIdentity();				// Reset The View
-
+  glTranslatef(0.0f,0.0f,zoom);
   glRotatef(rot,0.0f,1.0f,0.0f);
-  glTranslatef(1.5f,0.0f,zoom);
-  Leg();
+  Leg(1.5);
   glLoadIdentity();				// Reset The View
+  glTranslatef(0.0f,0.0f,zoom);
   glRotatef(rot,0.0f,1.0f,0.0f);
-  glTranslatef(-1.5f,0.0f,zoom);
-  Leg();
+  Leg(-1.5);
+  glLoadIdentity();				// Reset The View
+  glTranslatef(0.0f,2.0f,zoom);
+  glRotatef(rot,0.0f,1.0f,0.0f);
+  torso();
   //Leg();
 
 
@@ -191,7 +257,7 @@ int main(int argc, char **argv)
   glutInitWindowPosition(0, 0);
 
   /* Open a window */
-  window = glutCreateWindow("Jeff Molofee's GL Code Tutorial ... NeHe '99");
+  window = glutCreateWindow("LEGO Batman");
 
   /* Register the function to do all our OpenGL drawing. */
   glutDisplayFunc(&DrawGLScene);
