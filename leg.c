@@ -14,7 +14,7 @@ GLfloat     zoom = -12.0f;
 /* A general OpenGL initialization function.  Sets all of the initial parameters. */
 void InitGL(int Width, int Height)	        // We call this right after our OpenGL window is created.
 {
-  glClearColor(1.0f, 1.0f, 1.0f, 1.0f);		// This Will Clear The Background Color To Black
+  glClearColor(0.0f, 0.0f, 0.0f, 0.0f);		// This Will Clear The Background Color To Black
   glClearDepth(1.0);				// Enables Clearing Of The Depth Buffer
   glDepthFunc(GL_LESS);				// The Type Of Depth Test To Do
   glEnable(GL_DEPTH_TEST);			// Enables Depth Testing
@@ -51,49 +51,49 @@ void DrawGLScene()
   glTranslatef(0.0f,0.0f,zoom);
   glRotatef(rot,0.0f,1.0f,0.0f);
   glBegin(GL_POLYGON);
-  glColor3f(0.0,0.0,0.0);  //Front
+  glColor3f(0.5f,0.5f,0.5f); //Front
   glVertex3f(1.0f,2.0f,1.0f);  //Front
   glVertex3f(-1.0f,2.0f,1.0f); //Front
   glVertex3f(-1.0f,-2.0f,1.0f); //Front
   glVertex3f(1.0f,-2.0f,1.0f);  //Front
   glEnd();
   glBegin(GL_POLYGON);
-  glColor3f(0.0,0.0,0.0);  //Top Knee
+  glColor3f(0.5f,0.5f,0.5f); //Top Knee
   glVertex3f(1.0,-2.0f,1.0f);  //Top Knee
   glVertex3f(-1.0,-2.0f,1.0f);  //Top Knee
   glVertex3f(-1.0,-2.0f,3.0f);  //Top Knee
   glVertex3f(1.0,-2.0f,3.0f);  //Top Knee
   glEnd();
   glBegin(GL_POLYGON);
-  glColor3f(0.0,0.0,0.0);  //Front
+  glColor3f(0.5f,0.5f,0.5f); //Front
   glVertex3f(1.0f,-2.0f,3.0f); //Front knee
   glVertex3f(-1.0f,-2.0f,3.0f); //Front knee
   glVertex3f(-1.0f,-3.0f,3.0f); //Front knee
   glVertex3f(1.0f,-3.0f,3.0f); //Front knee
   glEnd();
   glBegin(GL_POLYGON);
-  glColor3f(0.0,0.0,0.0);  //Bottom Knee
+  glColor3f(0.5f,0.5f,0.5f); //Bottom Knee
   glVertex3f(1.0,-3.0f,0.0f);  //Bottom Knee
   glVertex3f(-1.0,-3.0f,0.0f);  //Bottom Knee
   glVertex3f(-1.0,-3.0f,3.0f);  //Bottom Knee
   glVertex3f(1.0,-3.0f,3.0f);  //Bottom Knee
   glEnd();
   glBegin(GL_POLYGON);
-  glColor3f(0.0,0.0,0.0);  //Back
+  glColor3f(0.5f,0.5f,0.5f); //Back
   glVertex3f(1.0f,2.0f,0.0f);  //Back
   glVertex3f(-1.0f,2.0f,0.0f); //Back
   glVertex3f(-1.0f,-3.0f,0.0f); //Back
   glVertex3f(1.0f,-3.0f,0.0f);  //Back
   glEnd();
   glBegin(GL_POLYGON);
-  glColor3f(0.0,0.0,0.0);  //Top
+  glColor3f(0.5f,0.5f,0.5f); //Top
   glVertex3f(1.0,2.0f,1.0f);  //Top
   glVertex3f(-1.0,2.0f,1.0f);  //Top
   glVertex3f(-1.0,2.0f,0.0f);  //Top
   glVertex3f(1.0,2.0f,0.0f);  //Top
   glEnd();
   glBegin(GL_POLYGON);
-  glColor3f(0.0,0.0,0.0);  //RightLong
+  glColor3f(0.5f,0.5f,0.5f); //RightLong
   glVertex3f(1.0f,2.0f,1.0f);  //RightLong
   glVertex3f(1.0f,2.0f,0.0f);  //RightLong
   glVertex3f(1.0f,-3.0f,0.0f);  //RightLong
@@ -101,7 +101,7 @@ void DrawGLScene()
   glVertex3f(1.0f,2.0f,1.0f);   //RightLong
   glEnd();
   glBegin(GL_POLYGON);
-  glColor3f(0.0,0.0,0.0);  //RightShort
+  glColor3f(0.5f,0.5f,0.5f); //RightShort
   glVertex3f(1.0f,-3.0f,1.0f);  //RightShort
   glVertex3f(1.0f,-3.0f,3.0f);  //RightShort
   glVertex3f(1.0f,-2.0f,3.0f);  //RightShort
@@ -109,7 +109,7 @@ void DrawGLScene()
   //glVertex3f(1.0f,-3.0f,1.0f);   //RightShort
   glEnd();
   glBegin(GL_POLYGON);
-  glColor3f(0.0,0.0,0.0);  //LeftLong
+  glColor3f(0.5f,0.5f,0.5f); //LeftLong
   glVertex3f(-1.0f,2.0f,1.0f);  //LeftLong
   glVertex3f(-1.0f,2.0f,0.0f);  //LeftLong
   glVertex3f(-1.0f,-3.0f,0.0f);  //LeftLong
@@ -117,7 +117,7 @@ void DrawGLScene()
   glVertex3f(-1.0f,2.0f,1.0f);   //LeftLong
   glEnd();
   glBegin(GL_POLYGON);
-  glColor3f(0.0,0.0,0.0);  //LeftShort
+  glColor3f(0.5f,0.5f,0.5f); //LeftShort
   glVertex3f(-1.0f,-3.0f,1.0f);  //LeftShort
   glVertex3f(-1.0f,-3.0f,3.0f);  //LeftShort
   glVertex3f(-1.0f,-2.0f,3.0f);  //LeftShort
