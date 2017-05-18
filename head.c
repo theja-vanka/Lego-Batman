@@ -125,6 +125,19 @@ void DrawGLScene()
   glVertex3f(-1.0f,3.0f,1.0f); //Tb
   glVertex3f(-1.0f,3.0f,0.0f);
   glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.0,0.0,0.0);  //Cateyeleft
+  glVertex3f(-0.8f,1.2f,1.01f);  //Cateyeleft
+  glVertex3f(-0.8f,1.5f,1.01f); //Cateyeleft
+  glVertex3f(-0.2f,1.2f,1.01f); //Cateyeleft
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.0,0.0,0.0);  //Cateyeleft
+  glVertex3f(0.8f,1.2f,1.01f);  //Cateyeleft
+  glVertex3f(0.8f,1.5f,1.01f); //Cateyeleft
+  glVertex3f(0.2f,1.2f,1.01f); //Cateyeleft
+  glEnd();
+
 
   // since this is double buffered, swap the buffers to display what just got drawn.
   glutSwapBuffers();
