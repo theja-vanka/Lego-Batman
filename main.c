@@ -611,6 +611,105 @@ void pelvis()
   glEnd();
 }
 
+void belt()
+{
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,0.0f);  //Front
+  glVertex3f(-2.5f,0.5f,1.0f);  //Front
+  glVertex3f(-2.5f,0.0f,1.0f); //Front
+  glVertex3f(-1.5f,0.0f,1.0f); //Front
+  glVertex3f(-1.5f,0.5f,1.0f);  //Front
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,0.0f);  //Front
+  glVertex3f(2.5f,0.5f,1.0f);  //Front
+  glVertex3f(2.5f,0.0f,1.0f); //Front
+  glVertex3f(1.5f,0.0f,1.0f); //Front
+  glVertex3f(1.5f,0.5f,1.0f);  //Front
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,0.0f);  //Front
+  glVertex3f(-0.5f,0.3f,1.0f);  //Front
+  glVertex3f(-1.5f,0.3f,1.0f); //Front
+  glVertex3f(-1.5f,0.2f,1.0f); //Front
+  glVertex3f(-0.5f,0.2f,1.0f);  //Front
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,0.0f);  //Front
+  glVertex3f(0.5f,0.3f,1.0f);  //Front
+  glVertex3f(1.5f,0.3f,1.0f); //Front
+  glVertex3f(1.5f,0.2f,1.0f); //Front
+  glVertex3f(0.5f,0.2f,1.0f);  //Front
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,0.0f);  //Front
+  glVertex3f(-0.5f,0.4f,1.0f);  //Front
+  glVertex3f(-0.5f,0.1f,1.0f); //Front
+  glVertex3f(0.5f,0.1f,1.0f); //Front
+  glVertex3f(0.5f,0.4f,1.0f);  //Front
+  glEnd();
+
+  //--------------------------------
+
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,0.0f);  //Front
+  glVertex3f(-2.5f,0.5f,0.0f);  //Front
+  glVertex3f(-2.5f,0.0f,0.0f); //Front
+  glVertex3f(-1.5f,0.0f,0.0f); //Front
+  glVertex3f(-1.5f,0.5f,0.0f);  //Front
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,0.0f);  //Front
+  glVertex3f(2.5f,0.5f,0.0f);  //Front
+  glVertex3f(2.5f,0.0f,0.0f); //Front
+  glVertex3f(1.5f,0.0f,0.0f); //Front
+  glVertex3f(1.5f,0.5f,0.0f);  //Front
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,0.0f);  //Front
+  glVertex3f(-0.5f,0.3f,0.0f);  //Front
+  glVertex3f(-1.5f,0.3f,0.0f); //Front
+  glVertex3f(-1.5f,0.2f,0.0f); //Front
+  glVertex3f(-0.5f,0.2f,0.0f);  //Front
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,0.0f);  //Front
+  glVertex3f(0.5f,0.3f,0.0f);  //Front
+  glVertex3f(1.5f,0.3f,0.0f); //Front
+  glVertex3f(1.5f,0.2f,0.0f); //Front
+  glVertex3f(0.5f,0.2f,0.0f);  //Front
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,0.0f);  //Front
+  glVertex3f(-0.5f,0.4f,0.0f);  //Front
+  glVertex3f(-0.5f,0.1f,0.0f); //Front
+  glVertex3f(0.5f,0.1f,0.0f); //Front
+  glVertex3f(0.5f,0.4f,0.0f);  //Front
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,0.0f);  //right
+  glVertex3f(2.5f,0.0f,0.0f);  //right
+  glVertex3f(2.5f,0.0f,1.0f); //right
+  glVertex3f(2.5f,0.5f,1.0f); //right
+  glVertex3f(2.5f,0.5f,0.0f);  //right
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,0.0f);  //Left
+  glVertex3f(-2.5f,0.0f,0.0f);  //Left
+  glVertex3f(-2.5f,0.0f,1.0f); //Left
+  glVertex3f(-2.5f,0.5f,1.0f); //Left
+  glVertex3f(-2.5f,0.5f,0.0f);  //Left
+  glEnd();
+}
+
 /* The main drawing function. */
 void DrawGLScene()
 {
@@ -626,19 +725,24 @@ void DrawGLScene()
   glRotatef(rot,0.0f,1.0f,0.0f);
   Leg(-1.5);
   glLoadIdentity();				// Reset The View
-  glTranslatef(0.0f,2.5f,zoom);
+  glTranslatef(0.0f,2.0f,zoom);
+  glRotatef(rot,0.0f,1.0f,0.0f);
+  belt();
+  glLoadIdentity();				// Reset The View
+  glTranslatef(0.0f,2.6f,zoom);
   glRotatef(rot,0.0f,1.0f,0.0f);
   torso();
   glLoadIdentity();				// Reset The View
   glTranslatef(0.0f,1.1f,zoom);
   glRotatef(rot,0.0f,1.0f,0.0f);
   pelvis();
+
   glLoadIdentity();				// Reset The View
-  glTranslatef(0.0f,0.0f,zoom);
+  glTranslatef(0.0f,0.6f,zoom);
   glRotatef(rot,0.0f,1.0f,0.0f);
   handr(3.0);
   glLoadIdentity();
-  glTranslatef(0.0f,0.0f,zoom);
+  glTranslatef(0.0f,0.6f,zoom);
   glRotatef(rot,0.0f,1.0f,0.0f);
   handl(-3.0);
   //Leg();
