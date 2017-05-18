@@ -7,11 +7,24 @@
 
 /* ascii code for the escape key */
 #define ESCAPE 27
+#define W 119
+#define S 115
 
 /* The number of our GLUT window */
 int window;
 GLfloat     rot;                       // Angle For The Triangle ( NEW )
-GLfloat     zoom = -25.0f;
+GLfloat     zoom = -50.0f;
+
+GLfloat lhandx = -3.0f;
+GLfloat rhandx = 3.0f;
+GLfloat heady = 6.6f;
+GLfloat torsoy = 2.6f;
+GLfloat belty = 2.0f;
+GLfloat rlegx = 1.5f;
+GLfloat llegx = -1.5f;
+
+GLfloat hhktv = 3.0f;
+
 /* storage for one texture  */
 int texture[1];
 
@@ -793,26 +806,25 @@ void head()
 void DrawGLScene()
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);		// Clear The Screen And The Depth Buffer
-  glLoadIdentity();
-  glTranslatef(0.0,0.0,0.0);
+
   glLoadIdentity();				// Reset The View
   glTranslatef(0.0f,0.0f,zoom);
   glRotatef(rot,0.0f,1.0f,0.0f);
-  Leg(1.5);
+  Leg(rlegx+hhktv);
   glLoadIdentity();				// Reset The View
   glTranslatef(0.0f,0.0f,zoom);
   glRotatef(rot,0.0f,1.0f,0.0f);
-  Leg(-1.5);
+  Leg(llegx-hhktv);
   glLoadIdentity();				// Reset The View
-  glTranslatef(0.0f,2.0f,zoom);
+  glTranslatef(0.0f,(belty+hhktv),zoom);
   glRotatef(rot,0.0f,1.0f,0.0f);
   belt();
   glLoadIdentity();				// Reset The View
-  glTranslatef(0.0f,2.6f,zoom);
+  glTranslatef(0.0f,(torsoy+hhktv),zoom);
   glRotatef(rot,0.0f,1.0f,0.0f);
   torso();
   glLoadIdentity();				// Reset The View
-  glTranslatef(0.0f,6.6f,zoom);
+  glTranslatef(0.0f,(heady+hhktv),zoom);
   glRotatef(rot,0.0f,1.0f,0.0f);
   head();
   glLoadIdentity();				// Reset The View
@@ -823,11 +835,11 @@ void DrawGLScene()
   glLoadIdentity();				// Reset The View
   glTranslatef(0.0f,0.6f,zoom);
   glRotatef(rot,0.0f,1.0f,0.0f);
-  handr(3.0);
+  handr(rhandx+hhktv);
   glLoadIdentity();
   glTranslatef(0.0f,0.6f,zoom);
   glRotatef(rot,0.0f,1.0f,0.0f);
-  handl(-3.0);
+  handl(lhandx-hhktv);
   //Leg();
 
 
@@ -849,6 +861,16 @@ void keyPressed(unsigned char key, int x, int y)
 
 	/* exit the program...normal termination. */
 	exit(0);
+    }
+    if (key == W)
+    {
+      if(hhktv > 0.0f)
+      hhktv -=0.2f;
+    }
+    if (key == S)
+    {
+      if(hhktv < 3.0f)
+      hhktv +=0.2f;
     }
 }
 void specialKeys( int key, int x, int y ) {
