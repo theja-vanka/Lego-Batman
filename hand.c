@@ -9,7 +9,7 @@
 /* The number of our GLUT window */
 int window;
 GLfloat     rot;                       // Angle For The Triangle ( NEW )
-GLfloat     zoom = -12.0f;
+GLfloat     zoom = -20.0f;
 
 /* A general OpenGL initialization function.  Sets all of the initial parameters. */
 void InitGL(int Width, int Height)	        // We call this right after our OpenGL window is created.
@@ -51,11 +51,68 @@ void DrawGLScene()
   glTranslatef(0.0f,0.0f,zoom);
   glRotatef(rot,0.0f,1.0f,0.0f);
   glBegin(GL_POLYGON);
-  glColor3f(0.5,0.5,0.5);  //Front
-  glVertex3f(1.0f,2.0f,1.0f);  //Front
-  glVertex3f(-1.0f,2.0f,1.0f); //Front
-  glVertex3f(-1.0f,-2.0f,1.0f); //Front
-  glVertex3f(1.0f,-2.0f,1.0f);  //Front
+  glColor3f(0.5f,0.5f,0.5f);  //Front
+  glVertex3f(-1.5f,6.0f,1.0f);  //Front
+  glVertex3f(-1.5f,5.0f,1.0f); //Front
+  glVertex3f(-0.5f,5.0f,1.0f); //Front
+  glVertex3f(-0.5f,6.0f,1.0f);  //Front
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //Front
+  glVertex3f(0.5f,0.0f,1.0f);  //Front
+  glVertex3f(2.0f,0.0f,1.0f); //Front
+  glVertex3f(2.0f,1.0f,1.0f); //Front
+  glVertex3f(0.5f,1.0f,1.0f);  //Front
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //Front
+  glVertex3f(-0.5f,6.0f,1.0f);  //Front
+  glVertex3f(-0.8f,5.0f,1.0f); //Front
+  glVertex3f(0.7f,1.0f,1.0f); //Front
+  glVertex3f(1.8f,1.0f,1.0f);  //Front
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //Back
+  glVertex3f(-1.5f,6.0f,0.0f);  //Back
+  glVertex3f(-1.5f,5.0f,0.0f); //Back
+  glVertex3f(-0.5f,5.0f,0.0f); //Back
+  glVertex3f(-0.5f,6.0f,0.0f);  //Back
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //Back
+  glVertex3f(0.5f,0.0f,0.0f);  //Back
+  glVertex3f(2.0f,0.0f,0.0f); //Back
+  glVertex3f(2.0f,1.0f,0.0f); //Back
+  glVertex3f(0.5f,1.0f,0.0f);  //Back
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //Back
+  glVertex3f(-0.5f,6.0f,0.0f);  //Back
+  glVertex3f(-0.8f,5.0f,0.0f); //Back
+  glVertex3f(0.7f,1.0f,0.0f); //Bac0
+  glVertex3f(1.8f,1.0f,0.0f);  //Back
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //SideOuter
+  glVertex3f(-0.5f,6.0f,0.0f);  //SideOuter
+  glVertex3f(1.8f,1.0f,0.0f); //SideOuter
+  glVertex3f(1.8f,1.0f,1.0f); //SideOuter
+  glVertex3f(-0.5f,6.0f,1.0f);  //SideOuter
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //SideOuter
+  glVertex3f(2.0f,1.0f,0.0f);  //SideOuter
+  glVertex3f(2.0f,0.0f,0.0f); //SideOuter
+  glVertex3f(2.0f,0.0f,1.0f); //SideOuter
+  glVertex3f(2.0f,1.0f,1.0f);  //SideOuter
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //SideOuter
+  glVertex3f(-1.5f,6.0f,0.0f);  //SideOuter
+  glVertex3f(-0.5f,6.0f,0.0f); //SideOuter
+  glVertex3f(-0.5f,6.0f,1.0f); //SideOuter
+  glVertex3f(-1.5f,6.0f,1.0f);  //SideOuter
   glEnd();
 
   // since this is double buffered, swap the buffers to display what just got drawn.
@@ -112,7 +169,7 @@ int main(int argc, char **argv)
   glutInitWindowPosition(0, 0);
 
   /* Open a window */
-  window = glutCreateWindow("Leg");
+  window = glutCreateWindow("Hands");
 
   /* Register the function to do all our OpenGL drawing. */
   glutDisplayFunc(&DrawGLScene);

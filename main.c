@@ -310,6 +310,307 @@ glBindTexture(GL_TEXTURE_2D, texture[0]);
   glEnd();
 }
 
+void handr(GLfloat off)
+{
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //Front
+  glVertex3f(-1.5f+off,6.0f,1.0f);  //Front
+  glVertex3f(-1.5f+off,5.0f,1.0f); //Front
+  glVertex3f(-0.5f+off,5.0f,1.0f); //Front
+  glVertex3f(-0.5f+off,6.0f,1.0f);  //Front
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //Front
+  glVertex3f(0.5f+off,0.0f,1.0f);  //Front
+  glVertex3f(2.0f+off,0.0f,1.0f); //Front
+  glVertex3f(2.0f+off,1.0f,1.0f); //Front
+  glVertex3f(0.5f+off,1.0f,1.0f);  //Front
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //Front
+  glVertex3f(-0.5f+off,6.0f,1.0f);  //Front
+  glVertex3f(-0.8f+off,5.0f,1.0f); //Front
+  glVertex3f(0.7f+off,1.0f,1.0f); //Front
+  glVertex3f(1.8f+off,1.0f,1.0f);  //Front
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //Back
+  glVertex3f(-1.5f+off,6.0f,0.0f);  //Back
+  glVertex3f(-1.5f+off,5.0f,0.0f); //Back
+  glVertex3f(-0.5f+off,5.0f,0.0f); //Back
+  glVertex3f(-0.5f+off,6.0f,0.0f);  //Back
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //Back
+  glVertex3f(0.5f+off,0.0f,0.0f);  //Back
+  glVertex3f(2.0f+off,0.0f,0.0f); //Back
+  glVertex3f(2.0f+off,1.0f,0.0f); //Back
+  glVertex3f(0.5f+off,1.0f,0.0f);  //Back
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //Back
+  glVertex3f(-0.5f+off,6.0f,0.0f);  //Back
+  glVertex3f(-0.8f+off,5.0f,0.0f); //Back
+  glVertex3f(0.7f+off,1.0f,0.0f); //Bac0
+  glVertex3f(1.8f+off,1.0f,0.0f);  //Back
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //SideOuter
+  glVertex3f(-0.5f+off,6.0f,0.0f);  //SideOuter
+  glVertex3f(1.8f+off,1.0f,0.0f); //SideOuter
+  glVertex3f(1.8f+off,1.0f,1.0f); //SideOuter
+  glVertex3f(-0.5f+off,6.0f,1.0f);  //SideOuter
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //SideOuter
+  glVertex3f(2.0f+off,1.0f,0.0f);  //SideOuter
+  glVertex3f(2.0f+off,0.0f,0.0f); //SideOuter
+  glVertex3f(2.0f+off,0.0f,1.0f); //SideOuter
+  glVertex3f(2.0f+off,1.0f,1.0f);  //SideOuter
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //SideOuter
+  glVertex3f(-1.5f+off,6.0f,0.0f);  //SideOuter
+  glVertex3f(-0.5f+off,6.0f,0.0f); //SideOuter
+  glVertex3f(-0.5f+off,6.0f,1.0f); //SideOuter
+  glVertex3f(-1.5f+off,6.0f,1.0f);  //SideOuter
+  glEnd();
+}
+void handl(GLfloat off)
+{
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //Front
+  glVertex3f(1.5f+off,6.0f,1.0f);  //Front
+  glVertex3f(1.5f+off,5.0f,1.0f); //Front
+  glVertex3f(0.5f+off,5.0f,1.0f); //Front
+  glVertex3f(0.5f+off,6.0f,1.0f);  //Front
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //Front
+  glVertex3f(-0.5f+off,0.0f,1.0f);  //Front
+  glVertex3f(-2.0f+off,0.0f,1.0f); //Front
+  glVertex3f(-2.0f+off,1.0f,1.0f); //Front
+  glVertex3f(-0.5f+off,1.0f,1.0f);  //Front
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //Front
+  glVertex3f(0.5f+off,6.0f,1.0f);  //Front
+  glVertex3f(0.8f+off,5.0f,1.0f); //Front
+  glVertex3f(-0.7f+off,1.0f,1.0f); //Front
+  glVertex3f(-1.8f+off,1.0f,1.0f);  //Front
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //Back
+  glVertex3f(1.5f+off,6.0f,0.0f);  //Back
+  glVertex3f(1.5f+off,5.0f,0.0f); //Back
+  glVertex3f(0.5f+off,5.0f,0.0f); //Back
+  glVertex3f(0.5f+off,6.0f,0.0f);  //Back
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //Back
+  glVertex3f(-0.5f+off,0.0f,0.0f);  //Back
+  glVertex3f(-2.0f+off,0.0f,0.0f); //Back
+  glVertex3f(-2.0f+off,1.0f,0.0f); //Back
+  glVertex3f(-0.5f+off,1.0f,0.0f);  //Back
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //Back
+  glVertex3f(0.5f+off,6.0f,0.0f);  //Back
+  glVertex3f(0.8f+off,5.0f,0.0f); //Back
+  glVertex3f(-0.7f+off,1.0f,0.0f); //Bac0
+  glVertex3f(-1.8f+off,1.0f,0.0f);  //Back
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //SideOuter
+  glVertex3f(0.5f+off,6.0f,0.0f);  //SideOuter
+  glVertex3f(-1.8f+off,1.0f,0.0f); //SideOuter
+  glVertex3f(-1.8f+off,1.0f,1.0f); //SideOuter
+  glVertex3f(0.5f+off,6.0f,1.0f);  //SideOuter
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //SideOuter
+  glVertex3f(-2.0f+off,1.0f,0.0f);  //SideOuter
+  glVertex3f(-2.0f+off,0.0f,0.0f); //SideOuter
+  glVertex3f(-2.0f+off,0.0f,1.0f); //SideOuter
+  glVertex3f(-2.0f+off,1.0f,1.0f);  //SideOuter
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //SideOuter
+  glVertex3f(1.5f+off,6.0f,0.0f);  //SideOuter
+  glVertex3f(0.5f+off,6.0f,0.0f); //SideOuter
+  glVertex3f(0.5f+off,6.0f,1.0f); //SideOuter
+  glVertex3f(1.5f+off,6.0f,1.0f);  //SideOuter
+  glEnd();
+}
+
+void pelvis()
+{
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //Front
+  glVertex3f(-2.5f,1.5f,1.0f); //Front
+  glVertex3f(-2.5f,1.0f,1.0f); //Front
+  glVertex3f(2.5f,1.0f,1.0f); //Front
+  glVertex3f(2.5f,1.5f,1.0f); //Front
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //Front
+  glVertex3f(-0.5f,1.0f,1.0f); //Front
+  glVertex3f(-0.5f,0.0f,1.0f); //Front
+  glVertex3f(0.5f,0.0f,1.0f); //Front
+  glVertex3f(0.5f,1.0f,1.0f); //Front
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //Back
+  glVertex3f(-2.5f,1.5f,0.0f); //Back
+  glVertex3f(-2.5f,1.0f,0.0f); //Back
+  glVertex3f(2.5f,1.0f,0.0f); //Back
+  glVertex3f(2.5f,1.5f,0.0f); //Back
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //Back
+  glVertex3f(-0.5f,1.0f,0.0f); //Back
+  glVertex3f(-0.5f,0.0f,0.0f); //Back
+  glVertex3f(0.5f,0.0f,0.0f); //Back
+  glVertex3f(0.5f,1.0f,0.0f); //Back
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //Right
+  glVertex3f(2.5f,1.5f,0.0f); //Right
+  glVertex3f(2.5f,1.0f,0.0f); //Right
+  glVertex3f(2.5f,1.0f,1.0f); //Right
+  glVertex3f(2.5f,1.5f,1.0f); //Right
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //Right
+  glVertex3f(0.5f,0.0f,0.0f); //Right
+  glVertex3f(0.5f,0.0f,1.0f); //Right
+  glVertex3f(0.5f,1.0f,1.0f); //Right
+  glVertex3f(0.5f,1.0f,0.0f); //Right
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //Left
+  glVertex3f(-2.5f,1.5f,0.0f); //Left
+  glVertex3f(-2.5f,1.0f,0.0f); //Left
+  glVertex3f(-2.5f,1.0f,1.0f); //Left
+  glVertex3f(-2.5f,1.5f,1.0f); //Left
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //Left
+  glVertex3f(-0.5f,0.0f,0.0f); //Left
+  glVertex3f(-0.5f,0.0f,1.0f); //Left
+  glVertex3f(-0.5f,1.0f,1.0f); //Left
+  glVertex3f(-0.5f,1.0f,0.0f); //Left
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //Top
+  glVertex3f(-2.5f,1.5f,0.0f); //Top
+  glVertex3f(2.5f,1.5f,0.0f); //Top
+  glVertex3f(2.5f,1.5f,1.0f); //Top
+  glVertex3f(-2.5f,1.5f,1.0f); //Top
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,1.0f);  //RHP
+  glVertex3f(0.5f,0.5f,0.25f); //RHP
+  glVertex3f(2.0f,0.5f,0.25f); //RHP
+  glVertex3f(2.0f,0.75f,0.25f); //RHP
+  glVertex3f(0.5f,0.75f,0.25f); //RHP
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,1.0f);  //RHP
+  glVertex3f(0.5f,0.5f,0.50f); //RHP
+  glVertex3f(2.0f,0.5f,0.50f); //RHP
+  glVertex3f(2.0f,0.75f,0.50f); //RHP
+  glVertex3f(0.5f,0.75f,0.50f); //RHP
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,1.0f);  //RHP
+  glVertex3f(2.0f,0.5f,0.25f); //RHP
+  glVertex3f(2.0f,0.75f,0.25f); //RHP
+  glVertex3f(2.0f,0.75f,0.50f); //RHP
+  glVertex3f(2.0f,0.5f,0.50f); //RHP
+  glEnd();
+
+  //-------------------
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,1.0f);  //RHP
+  glVertex3f(-0.5f,0.5f,0.25f); //RHP
+  glVertex3f(-2.0f,0.5f,0.25f); //RHP
+  glVertex3f(-2.0f,0.75f,0.25f); //RHP
+  glVertex3f(-0.5f,0.75f,0.25f); //RHP
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,1.0f);  //RHP
+  glVertex3f(-0.5f,0.5f,0.50f); //RHP
+  glVertex3f(-2.0f,0.5f,0.50f); //RHP
+  glVertex3f(-2.0f,0.75f,0.50f); //RHP
+  glVertex3f(-0.5f,0.75f,0.50f); //RHP
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,1.0f);  //RHP
+  glVertex3f(-2.0f,0.5f,0.25f); //RHP
+  glVertex3f(-2.0f,0.75f,0.25f); //RHP
+  glVertex3f(-2.0f,0.75f,0.50f); //RHP
+  glVertex3f(-2.0f,0.5f,0.50f); //RHP
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,1.0f);  //HR
+  glVertex3f(-0.5f,1.5f,0.5f); //HR
+  glVertex3f(-0.5f,2.5f,0.5f); //HR
+  glVertex3f(-1.5f,2.5f,0.50f); //HR
+  glVertex3f(-1.5f,1.5f,0.50f); //HR
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,1.0f);  //HR
+  glVertex3f(-0.5f,1.5f,0.25f); //HR
+  glVertex3f(-0.5f,2.5f,0.25f); //HR
+  glVertex3f(-1.5f,2.5f,0.250f); //HR
+  glVertex3f(-1.5f,1.5f,0.250f); //HR
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,1.0f);  //HR
+  glVertex3f(0.5f,1.5f,0.5f); //HR
+  glVertex3f(0.5f,2.5f,0.5f); //HR
+  glVertex3f(1.5f,2.5f,0.50f); //HR
+  glVertex3f(1.5f,1.5f,0.50f); //HR
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,1.0f);  //HR
+  glVertex3f(0.5f,1.5f,0.25f); //HR
+  glVertex3f(0.5f,2.5f,0.25f); //HR
+  glVertex3f(1.5f,2.5f,0.250f); //HR
+  glVertex3f(1.5f,1.5f,0.250f); //HR
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,1.0f);  //HR
+  glVertex3f(1.5f,1.5f,0.5f); //HR
+  glVertex3f(1.5f,1.5f,0.25f); //HR
+  glVertex3f(1.5f,2.5f,0.250f); //HR
+  glVertex3f(1.5f,2.5f,0.50f); //HR
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,1.0f);  //HR
+  glVertex3f(-1.5f,2.5f,0.5f); //HR
+  glVertex3f(-1.5f,1.5f,0.5f); //HR
+  glVertex3f(-1.5f,1.5f,0.250f); //HR
+  glVertex3f(-1.5f,2.5f,0.250f); //HR
+  glEnd();
+}
+
 /* The main drawing function. */
 void DrawGLScene()
 {
@@ -325,9 +626,21 @@ void DrawGLScene()
   glRotatef(rot,0.0f,1.0f,0.0f);
   Leg(-1.5);
   glLoadIdentity();				// Reset The View
-  glTranslatef(0.0f,2.0f,zoom);
+  glTranslatef(0.0f,2.5f,zoom);
   glRotatef(rot,0.0f,1.0f,0.0f);
   torso();
+  glLoadIdentity();				// Reset The View
+  glTranslatef(0.0f,1.1f,zoom);
+  glRotatef(rot,0.0f,1.0f,0.0f);
+  pelvis();
+  glLoadIdentity();				// Reset The View
+  glTranslatef(0.0f,0.0f,zoom);
+  glRotatef(rot,0.0f,1.0f,0.0f);
+  handr(3.0);
+  glLoadIdentity();
+  glTranslatef(0.0f,0.0f,zoom);
+  glRotatef(rot,0.0f,1.0f,0.0f);
+  handl(-3.0);
   //Leg();
 
 
