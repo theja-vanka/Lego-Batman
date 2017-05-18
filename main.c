@@ -2,6 +2,8 @@
 #include <GL/gl.h>	// Header File For The OpenGL32 Library
 #include <GL/glu.h>	// Header File For The GLu32 Library
 #include <unistd.h>     // Header file for sleeping.
+#include <stdio.h>      // Header file for standard file i/o.
+#include <stdlib.h>     // Header file for malloc/free.
 
 /* ascii code for the escape key */
 #define ESCAPE 27
@@ -10,11 +12,129 @@
 int window;
 GLfloat     rot;                       // Angle For The Triangle ( NEW )
 GLfloat     zoom = -20.0f;
+/* storage for one texture  */
+int texture[1];
 
+struct Image {
+    unsigned long sizeX;
+    unsigned long sizeY;
+    char *data;
+};
+typedef struct Image Image;
+
+int ImageLoad(char *filename, Image *image) {
+    FILE *file;
+    unsigned long size;                 // size of the image in bytes.
+    unsigned long i;                    // standard counter.
+    unsigned short int planes;          // number of planes in image (must be 1)
+    unsigned short int bpp;             // number of bits per pixel (must be 24)
+    char temp;                          // temporary color storage for bgr-rgb conversion.
+
+    // make sure the file is there.
+    if ((file = fopen(filename, "rb"))==NULL)
+    {
+	printf("File Not Found : %s\n",filename);
+	return 0;
+    }
+
+    // seek through the bmp header, up to the width/height:
+    fseek(file, 18, SEEK_CUR);
+
+    // read the width
+    if ((i = fread(&image->sizeX, 4, 1, file)) != 1) {
+	printf("Error reading width from %s.\n", filename);
+	return 0;
+    }
+    printf("Width of %s: %lu\n", filename, image->sizeX);
+
+    // read the height
+    if ((i = fread(&image->sizeY, 4, 1, file)) != 1) {
+	printf("Error reading height from %s.\n", filename);
+	return 0;
+    }
+    printf("Height of %s: %lu\n", filename, image->sizeY);
+
+    // calculate the size (assuming 24 bits or 3 bytes per pixel).
+    size = image->sizeX * image->sizeY * 3;
+
+    // read the planes
+    if ((fread(&planes, 2, 1, file)) != 1) {
+	printf("Error reading planes from %s.\n", filename);
+	return 0;
+    }
+    if (planes != 1) {
+	printf("Planes from %s is not 1: %u\n", filename, planes);
+	return 0;
+    }
+
+    // read the bpp
+    if ((i = fread(&bpp, 2, 1, file)) != 1) {
+	printf("Error reading bpp from %s.\n", filename);
+	return 0;
+    }
+    if (bpp != 24) {
+	printf("Bpp from %s is not 24: %u\n", filename, bpp);
+	return 0;
+    }
+
+    // seek past the rest of the bitmap header.
+    fseek(file, 24, SEEK_CUR);
+
+    // read the data.
+    image->data = (char *) malloc(size);
+    if (image->data == NULL) {
+	printf("Error allocating memory for color-corrected image data");
+	return 0;
+    }
+
+    if ((i = fread(image->data, size, 1, file)) != 1) {
+	printf("Error reading image data from %s.\n", filename);
+	return 0;
+    }
+
+    for (i=0;i<size;i+=3) { // reverse all of the colors. (bgr -> rgb)
+	temp = image->data[i];
+	image->data[i] = image->data[i+2];
+	image->data[i+2] = temp;
+    }
+
+    // we're done.
+    return 1;
+}
+
+// Load Bitmaps And Convert To Textures
+void LoadGLTextures() {
+    // Load Texture
+    Image *image1;
+
+    // allocate space for texture
+    image1 = (Image *) malloc(sizeof(Image));
+    if (image1 == NULL) {
+	printf("Error allocating space for image");
+	exit(0);
+    }
+
+    if (!ImageLoad("/home/vanka/Documents/Lego-Batman/media/logo.bmp", image1)) {
+	exit(1);
+    }
+
+    // Create Texture
+    glGenTextures(1, &texture[0]);
+    glBindTexture(GL_TEXTURE_2D, texture[0]);   // 2d texture (x and y size)
+
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR); // scale linearly when image bigger than texture
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR); // scale linearly when image smalled than texture
+
+    // 2d texture, level of detail 0 (normal), 3 components (red, green, blue), x size from image, y size from image,
+    // border 0 (normal), rgb color data, unsigned byte data, and finally the data itself.
+    glTexImage2D(GL_TEXTURE_2D, 0, 3, image1->sizeX, image1->sizeY, 0, GL_RGB, GL_UNSIGNED_BYTE, image1->data);
+};
 /* A general OpenGL initialization function.  Sets all of the initial parameters. */
 void InitGL(int Width, int Height)	        // We call this right after our OpenGL window is created.
 {
-  glClearColor(1.0f, 1.0f, 1.0f, 1.0f);		// This Will Clear The Background Color To Black
+  LoadGLTextures();				// Load The Texture(s)
+  glEnable(GL_TEXTURE_2D);			// Enable Texture Mapping
+  glClearColor(0.0f, 0.0f, 0.0f, 0.0f);		// This Will Clear The Background Color To Black
   glClearDepth(1.0);				// Enables Clearing Of The Depth Buffer
   glDepthFunc(GL_LESS);				// The Type Of Depth Test To Do
   glEnable(GL_DEPTH_TEST);			// Enables Depth Testing
@@ -46,49 +166,49 @@ void ReSizeGLScene(int Width, int Height)
 void Leg(GLfloat pos)
 {
   glBegin(GL_POLYGON);
-  glColor3f(0.0,0.0,0.0);  //Front
+  glColor3f(0.5f,0.5f,0.5f);  //Front
   glVertex3f(1.0f+pos,2.0f,1.0f);  //Front
   glVertex3f(-1.0f+pos,2.0f,1.0f); //Front
   glVertex3f(-1.0f+pos,-2.0f,1.0f); //Front
   glVertex3f(1.0f+pos,-2.0f,1.0f);  //Front
   glEnd();
   glBegin(GL_POLYGON);
-  glColor3f(0.0,0.0,0.0);  //Top Knee
+  glColor3f(0.5f,0.5f,0.5f);  //Top Knee
   glVertex3f(1.0+pos,-2.0f,1.0f);  //Top Knee
   glVertex3f(-1.0+pos,-2.0f,1.0f);  //Top Knee
   glVertex3f(-1.0+pos,-2.0f,3.0f);  //Top Knee
   glVertex3f(1.0+pos,-2.0f,3.0f);  //Top Knee
   glEnd();
   glBegin(GL_POLYGON);
-  glColor3f(0.0,0.0,0.0);  //Front
+  glColor3f(0.5f,0.5f,0.5f);  //Front
   glVertex3f(1.0f+pos,-2.0f,3.0f); //Front knee
   glVertex3f(-1.0f+pos,-2.0f,3.0f); //Front knee
   glVertex3f(-1.0f+pos,-3.0f,3.0f); //Front knee
   glVertex3f(1.0f+pos,-3.0f,3.0f); //Front knee
   glEnd();
   glBegin(GL_POLYGON);
-  glColor3f(0.0,0.0,0.0);  //Bottom Knee
+  glColor3f(0.5f,0.5f,0.5f);  //Bottom Knee
   glVertex3f(1.0+pos,-3.0f,0.0f);  //Bottom Knee
   glVertex3f(-1.0+pos,-3.0f,0.0f);  //Bottom Knee
   glVertex3f(-1.0+pos,-3.0f,3.0f);  //Bottom Knee
   glVertex3f(1.0+pos,-3.0f,3.0f);  //Bottom Knee
   glEnd();
   glBegin(GL_POLYGON);
-  glColor3f(0.0,0.0,0.0);  //Back
+  glColor3f(0.5f,0.5f,0.5f);  //Back
   glVertex3f(1.0f+pos,2.0f,0.0f);  //Back
   glVertex3f(-1.0f+pos,2.0f,0.0f); //Back
   glVertex3f(-1.0f+pos,-3.0f,0.0f); //Back
   glVertex3f(1.0f+pos,-3.0f,0.0f);  //Back
   glEnd();
   glBegin(GL_POLYGON);
-  glColor3f(0.0,0.0,0.0);  //Top
+  glColor3f(0.5f,0.5f,0.5f);  //Top
   glVertex3f(1.0+pos,2.0f,1.0f);  //Top
   glVertex3f(-1.0+pos,2.0f,1.0f);  //Top
   glVertex3f(-1.0+pos,2.0f,0.0f);  //Top
   glVertex3f(1.0+pos,2.0f,0.0f);  //Top
   glEnd();
   glBegin(GL_POLYGON);
-  glColor3f(0.0,0.0,0.0);  //RightLong
+  glColor3f(0.5f,0.5f,0.5f);  //RightLong
   glVertex3f(1.0f+pos,2.0f,1.0f);  //RightLong
   glVertex3f(1.0f+pos,2.0f,0.0f);  //RightLong
   glVertex3f(1.0f+pos,-3.0f,0.0f);  //RightLong
@@ -96,7 +216,7 @@ void Leg(GLfloat pos)
   glVertex3f(1.0f+pos,2.0f,1.0f);   //RightLong
   glEnd();
   glBegin(GL_POLYGON);
-  glColor3f(0.0,0.0,0.0);  //RightShort
+  glColor3f(0.5f,0.5f,0.5f);  //RightShort
   glVertex3f(1.0f+pos,-3.0f,1.0f);  //RightShort
   glVertex3f(1.0f+pos,-3.0f,3.0f);  //RightShort
   glVertex3f(1.0f+pos,-2.0f,3.0f);  //RightShort
@@ -104,7 +224,7 @@ void Leg(GLfloat pos)
   //glVertex3f(1.0f,-3.0f,1.0f);   //RightShort
   glEnd();
   glBegin(GL_POLYGON);
-  glColor3f(0.0,0.0,0.0);  //LeftLong
+  glColor3f(0.5f,0.5f,0.5f);  //LeftLong
   glVertex3f(-1.0f+pos,2.0f,1.0f);  //LeftLong
   glVertex3f(-1.0f+pos,2.0f,0.0f);  //LeftLong
   glVertex3f(-1.0f+pos,-3.0f,0.0f);  //LeftLong
@@ -112,7 +232,7 @@ void Leg(GLfloat pos)
   glVertex3f(-1.0f+pos,2.0f,1.0f);   //LeftLong
   glEnd();
   glBegin(GL_POLYGON);
-  glColor3f(0.0,0.0,0.0);  //LeftShort
+  glColor3f(0.5f,0.5f,0.5f);  //LeftShort
   glVertex3f(-1.0f+pos,-3.0f,1.0f);  //LeftShort
   glVertex3f(-1.0f+pos,-3.0f,3.0f);  //LeftShort
   glVertex3f(-1.0f+pos,-2.0f,3.0f);  //LeftShort
@@ -123,58 +243,66 @@ void Leg(GLfloat pos)
 
 void torso()
 {
-
+glBindTexture(GL_TEXTURE_2D, texture[0]);
   glBegin(GL_POLYGON);
-  glColor3f(0.0f,0.0f,0.0f);  //Back
+  glColor3f(0.5f,0.5f,0.5f);  //Back
+  glTexCoord2f(1.0f, 0.0f); glVertex3f(1.0f,1.0f,1.0f); //Back
+  glTexCoord2f(1.0f, 1.0f); glVertex3f(1.0f,3.0f,1.0f); //Back
+  glTexCoord2f(0.0f, 1.0f); glVertex3f(-1.0f,3.0f,1.0f); //Back
+  glTexCoord2f(0.0f, 0.0f); glVertex3f(-1.0f,1.0f,1.0f); //Back
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(0.5f,0.5f,0.5f);  //Back
   glVertex3f(2.5f,0.0f,1.0f); //Back
   glVertex3f(1.5f,4.0f,1.0f); //Back
   glVertex3f(-1.5f,4.0f,1.0f); //Back
   glVertex3f(-2.5f,0.0f,1.0f); //Back
   glEnd();
+
   glBegin(GL_POLYGON);
-  glColor3f(0.0f,0.0f,0.0f);  //Front
+  glColor3f(0.5f,0.5f,0.5f);  //Front
   glVertex3f(2.5f,0.0f,0.0f); //Front
   glVertex3f(1.5f,4.0f,0.0f); //Front
   glVertex3f(-1.5f,4.0f,0.0f); //Front
   glVertex3f(-2.5f,0.0f,0.0f); //Front
   glEnd();
   glBegin(GL_POLYGON);
-  glColor3f(0.0f,0.0f,0.0f);  //Left
+  glColor3f(0.5f,0.5f,0.5f);  //Left
   glVertex3f(-1.5f,4.0f,1.0f); //Left
   glVertex3f(-1.5f,4.0f,0.0f); //Left
   glVertex3f(-2.5f,0.0f,0.0f); //Left
   glVertex3f(-2.5f,0.0f,1.0f); //Left
   glEnd();
   glBegin(GL_POLYGON);
-  glColor3f(0.0f,0.0f,0.0f);  //Right
+  glColor3f(0.5f,0.5f,0.5f);  //Right
   glVertex3f(1.5f,4.0f,1.0f); //Right
   glVertex3f(1.5f,4.0f,0.0f); //Right
   glVertex3f(2.5f,0.0f,0.0f); //Right
   glVertex3f(2.5f,0.0f,1.0f); //Right
   glEnd();
   glBegin(GL_POLYGON);
-  glColor3f(0.0f,0.0f,0.0f);  //RodFront
+  glColor3f(0.5f,0.5f,0.5f);  //RodFront
   glVertex3f(-0.25f,4.5f,0.2f); //RodFront
   glVertex3f(-0.25f,4.0f,0.2f); //RodFront
   glVertex3f(0.25f,4.0f,0.2f); //RodFront
   glVertex3f(0.25f,4.5f,0.2f); //RodFront
   glEnd();
   glBegin(GL_POLYGON);
-  glColor3f(0.0f,0.0f,0.0f);  //RodBack
+  glColor3f(0.5f,0.5f,0.5f);  //RodBack
   glVertex3f(-0.25f,4.5f,0.8f); //RodBack
   glVertex3f(-0.25f,4.0f,0.8f); //RodBack
   glVertex3f(0.25f,4.0f,0.8f); //RodBack
   glVertex3f(0.25f,4.5f,0.8f); //RodBack
   glEnd();
   glBegin(GL_POLYGON);
-  glColor3f(0.0f,0.0f,0.0f);  //RodBack
+  glColor3f(0.5f,0.5f,0.5f);  //RodBack
   glVertex3f(0.25f,4.0f,0.2f); //RodBack
   glVertex3f(0.25f,4.0f,0.8f); //RodBack
   glVertex3f(0.25f,4.5f,0.8f); //RodBack
   glVertex3f(0.25f,4.5f,0.2f); //RodBack
   glEnd();
   glBegin(GL_POLYGON);
-  glColor3f(0.0f,0.0f,0.0f);  //RodBack
+  glColor3f(0.5f,0.5f,0.5f);  //RodBack
   glVertex3f(-0.25f,4.0f,0.2f); //RodBack
   glVertex3f(-0.25f,4.0f,0.8f); //RodBack
   glVertex3f(-0.25f,4.5f,0.8f); //RodBack
