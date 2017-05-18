@@ -51,11 +51,99 @@ void DrawGLScene()
   glTranslatef(0.0f,0.0f,zoom);
   glRotatef(rot,0.0f,1.0f,0.0f);
   glBegin(GL_POLYGON);
-  glColor3f(0.5,0.5,0.5);  //Front
-  glVertex3f(1.0f,2.0f,1.0f);  //Front
-  glVertex3f(-1.0f,2.0f,1.0f); //Front
-  glVertex3f(-1.0f,-2.0f,1.0f); //Front
-  glVertex3f(1.0f,-2.0f,1.0f);  //Front
+  glColor3f(1.0f,1.0f,0.0f);  //Front
+  glVertex3f(-2.5f,0.5f,1.0f);  //Front
+  glVertex3f(-2.5f,0.0f,1.0f); //Front
+  glVertex3f(-1.5f,0.0f,1.0f); //Front
+  glVertex3f(-1.5f,0.5f,1.0f);  //Front
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,0.0f);  //Front
+  glVertex3f(2.5f,0.5f,1.0f);  //Front
+  glVertex3f(2.5f,0.0f,1.0f); //Front
+  glVertex3f(1.5f,0.0f,1.0f); //Front
+  glVertex3f(1.5f,0.5f,1.0f);  //Front
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,0.0f);  //Front
+  glVertex3f(-0.5f,0.3f,1.0f);  //Front
+  glVertex3f(-1.5f,0.3f,1.0f); //Front
+  glVertex3f(-1.5f,0.2f,1.0f); //Front
+  glVertex3f(-0.5f,0.2f,1.0f);  //Front
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,0.0f);  //Front
+  glVertex3f(0.5f,0.3f,1.0f);  //Front
+  glVertex3f(1.5f,0.3f,1.0f); //Front
+  glVertex3f(1.5f,0.2f,1.0f); //Front
+  glVertex3f(0.5f,0.2f,1.0f);  //Front
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,0.0f);  //Front
+  glVertex3f(-0.5f,0.4f,1.0f);  //Front
+  glVertex3f(-0.5f,0.1f,1.0f); //Front
+  glVertex3f(0.5f,0.1f,1.0f); //Front
+  glVertex3f(0.5f,0.4f,1.0f);  //Front
+  glEnd();
+
+  //--------------------------------
+
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,0.0f);  //Front
+  glVertex3f(-2.5f,0.5f,0.0f);  //Front
+  glVertex3f(-2.5f,0.0f,0.0f); //Front
+  glVertex3f(-1.5f,0.0f,0.0f); //Front
+  glVertex3f(-1.5f,0.5f,0.0f);  //Front
+  glEnd();
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,0.0f);  //Front
+  glVertex3f(2.5f,0.5f,0.0f);  //Front
+  glVertex3f(2.5f,0.0f,0.0f); //Front
+  glVertex3f(1.5f,0.0f,0.0f); //Front
+  glVertex3f(1.5f,0.5f,0.0f);  //Front
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,0.0f);  //Front
+  glVertex3f(-0.5f,0.3f,0.0f);  //Front
+  glVertex3f(-1.5f,0.3f,0.0f); //Front
+  glVertex3f(-1.5f,0.2f,0.0f); //Front
+  glVertex3f(-0.5f,0.2f,0.0f);  //Front
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,0.0f);  //Front
+  glVertex3f(0.5f,0.3f,0.0f);  //Front
+  glVertex3f(1.5f,0.3f,0.0f); //Front
+  glVertex3f(1.5f,0.2f,0.0f); //Front
+  glVertex3f(0.5f,0.2f,0.0f);  //Front
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,0.0f);  //Front
+  glVertex3f(-0.5f,0.4f,0.0f);  //Front
+  glVertex3f(-0.5f,0.1f,0.0f); //Front
+  glVertex3f(0.5f,0.1f,0.0f); //Front
+  glVertex3f(0.5f,0.4f,0.0f);  //Front
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,0.0f);  //right
+  glVertex3f(2.5f,0.0f,0.0f);  //right
+  glVertex3f(2.5f,0.0f,1.0f); //right
+  glVertex3f(2.5f,0.5f,1.0f); //right
+  glVertex3f(2.5f,0.5f,0.0f);  //right
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(1.0f,1.0f,0.0f);  //Left
+  glVertex3f(-2.5f,0.0f,0.0f);  //Left
+  glVertex3f(-2.5f,0.0f,1.0f); //Left
+  glVertex3f(-2.5f,0.5f,1.0f); //Left
+  glVertex3f(-2.5f,0.5f,0.0f);  //Left
   glEnd();
 
   // since this is double buffered, swap the buffers to display what just got drawn.
