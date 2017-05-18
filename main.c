@@ -11,7 +11,7 @@
 /* The number of our GLUT window */
 int window;
 GLfloat     rot;                       // Angle For The Triangle ( NEW )
-GLfloat     zoom = -20.0f;
+GLfloat     zoom = -25.0f;
 /* storage for one texture  */
 int texture[1];
 
@@ -710,6 +710,85 @@ void belt()
   glEnd();
 }
 
+void head()
+{
+  glBegin(GL_POLYGON);
+  glColor3f(0.5,0.5,0.5);  //Front
+  glVertex3f(-1.0f,2.0f,1.0f);  //Front
+  glVertex3f(-1.0f,0.0f,1.0f); //Front
+  glVertex3f(1.0f,0.0f,1.0f); //Front
+  glVertex3f(1.0f,2.0f,1.0f);  //Front
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(0.5,0.5,0.5);  //Back
+  glVertex3f(-1.0f,2.0f,0.0f);  //Back
+  glVertex3f(-1.0f,0.0f,0.0f); //Back
+  glVertex3f(1.0f,0.0f,0.0f); //Back
+  glVertex3f(1.0f,2.0f,0.0f);  //Back
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(0.5,0.5,0.5);  //Right
+  glVertex3f(1.0f,0.0f,0.0f);  //Right
+  glVertex3f(1.0f,0.0f,1.0f); //Right
+  glVertex3f(1.0f,2.0f,1.0f); //Right
+  glVertex3f(1.0f,2.0f,0.0f);  //Right
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(0.5,0.5,0.5);  //Right
+  glVertex3f(-1.0f,0.0f,0.0f);  //Right
+  glVertex3f(-1.0f,0.0f,1.0f); //Right
+  glVertex3f(-1.0f,2.0f,1.0f); //Right
+  glVertex3f(-1.0f,2.0f,0.0f);  //Right
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(0.5,0.5,0.5);  //TF
+  glVertex3f(-1.0f,2.0f,0.0f);  //TF
+  glVertex3f(-1.0f,3.0f,0.0f); //TF
+  glVertex3f(-0.25f,2.0f,0.0f); //TF
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(0.5,0.5,0.5);  //TF
+  glVertex3f(1.0f,2.0f,0.0f);  //TF
+  glVertex3f(1.0f,3.0f,0.0f); //TF
+  glVertex3f(0.25f,2.0f,0.0f); //TF
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(0.5,0.5,0.5);  //Tb
+  glVertex3f(-1.0f,2.0f,1.0f);  //Tb
+  glVertex3f(-1.0f,3.0f,1.0f); //Tb
+  glVertex3f(-0.25f,2.0f,1.0f); //Tb
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(0.5,0.5,0.5);  //Tb
+  glVertex3f(1.0f,2.0f,1.0f);  //Tb
+  glVertex3f(1.0f,3.0f,1.0f); //Tb
+  glVertex3f(0.25f,2.0f,1.0f); //Tb
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(0.5,0.5,0.5);  //Tb
+  glVertex3f(1.0f,2.0f,0.0f);  //Tb
+  glVertex3f(1.0f,2.0f,1.0f); //Tb
+  glVertex3f(1.0f,3.0f,1.0f); //Tb
+  glVertex3f(1.0f,3.0f,0.0f);
+  glEnd();
+
+  glBegin(GL_POLYGON);
+  glColor3f(0.5,0.5,0.5);  //Tb
+  glVertex3f(-1.0f,2.0f,0.0f);  //Tb
+  glVertex3f(-1.0f,2.0f,1.0f); //Tb
+  glVertex3f(-1.0f,3.0f,1.0f); //Tb
+  glVertex3f(-1.0f,3.0f,0.0f);
+  glEnd();
+}
+
 /* The main drawing function. */
 void DrawGLScene()
 {
@@ -732,6 +811,10 @@ void DrawGLScene()
   glTranslatef(0.0f,2.6f,zoom);
   glRotatef(rot,0.0f,1.0f,0.0f);
   torso();
+  glLoadIdentity();				// Reset The View
+  glTranslatef(0.0f,6.6f,zoom);
+  glRotatef(rot,0.0f,1.0f,0.0f);
+  head();
   glLoadIdentity();				// Reset The View
   glTranslatef(0.0f,1.1f,zoom);
   glRotatef(rot,0.0f,1.0f,0.0f);
